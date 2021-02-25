@@ -1,5 +1,5 @@
 {
-  "name": "working-label",
+  "name": "pr-labeler",
   "private": true,
   "main": "index.js",
   "scripts": {
