@@ -4,7 +4,7 @@ const { Toolkit } = require('actions-toolkit');
 
 Toolkit.run(
   async tools => {
-    console.log("Labeler action ejecuted");
+    tools.log.info("Labeler action ejecuted");
   },
   {
     event: [
