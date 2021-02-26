@@ -12,3 +12,12 @@ lerna-debug.log*
 # Ignore built ts files
 __tests__/runner/*
 lib/**/*
+
+# misc
+.DS_Store
+
+# InteliJ IDE config
+.idea/
+
+# VSCODE
+.vscode/*
