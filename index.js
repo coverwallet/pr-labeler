@@ -4,7 +4,7 @@ const { Toolkit } = require('actions-toolkit');
 
 Toolkit.run(
   async tools => {
-    tools.log.info("Labeler action ejecuted!");
+    tools.log.info("Labeler action ejecuted");
   },
   {
     event: [
@@ -15,4 +15,3 @@ Toolkit.run(
     secrets: ['GITHUB_TOKEN'],
   },
 );
-
