@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const { Toolkit } = require('actions-toolkit');
 
+const runAction = require('./src/run-action');
+
 Toolkit.run(
   async tools => {
     tools.log.info('Running the action...');
