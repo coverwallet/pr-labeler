@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
-      - uses: coverwallet/pr-labeler@feature/action-structure
+      - uses: coverwallet/pr-labeler@feature/op-554-create-labels-if-not-exits
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
