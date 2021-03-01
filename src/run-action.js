@@ -3,10 +3,10 @@ const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
 
 module.exports = async tools => {
-  const size_xs = tools.inputs.size_xs;
-  const size_s = tools.inputs.size_s;
-  const size_m = tools.inputs.size_m;
-  const size_l = tools.inputs.size_l;
+  const size_xs = tools.inputs.xs_max_size;
+  const size_s = tools.inputs.s_max_size;
+  const size_m = tools.inputs.m_max_size;
+  const size_l = tools.inputs.l_max_size;
 
   await Promise.all([
     createLabelIfNotExists(tools, size_xs,'ABDEE6'),

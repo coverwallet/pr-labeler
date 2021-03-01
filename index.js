@@ -4,7 +4,10 @@ const { Toolkit } = require('actions-toolkit');
 
 Toolkit.run(
   async tools => {
-    tools.log.info("Labeler action ejecuted");
+    tools.log.info('Running the action...');
+    await runAction(tools);
+
+    tools.log.success('Label successfully applied!');
   },
   {
     event: [
