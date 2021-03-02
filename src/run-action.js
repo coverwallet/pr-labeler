@@ -3,15 +3,30 @@ const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
 
 module.exports = async tools => {
-  await Promise.all([
-    createLabelIfNotExists(tools, 'size_xs','abdee6'),
-    createLabelIfNotExists(tools, 'size_s', 'cbaacb'),
-    createLabelIfNotExists(tools, 'size_m', 'ffaea5'),
-    createLabelIfNotExists(tools, 'size_l', 'ffffb5'),
-  ]);
+    const xs = {
+        size : tools.inputs.xs_max_size,
+        color : 'abdee6'
+    }
 
-  //await Promise.all([
-  //  removeLabel(tools, readyToReviewLabel),
-  //  addLabel(tools, workInProgressLabel),
-  //]);
+    const s = {
+        size : tools.inputs.s_max_size,
+        color : 'cbaacb'
+    }
+
+    const m = {
+        size : tools.inputs.m_max_size,
+        color : 'ffaea5'
+    }
+
+    const l = {
+        size : tools.inputs.l_max_size,
+        color : 'ffffb5'
+    }
+
+    await Promise.all([
+        createLabelIfNotExists(tools, 'size_xs', xs),
+        createLabelIfNotExists(tools, 'size_s', s),
+        createLabelIfNotExists(tools, 'size_m', m),
+        createLabelIfNotExists(tools, 'size_l', l),
+    ]);
 };
