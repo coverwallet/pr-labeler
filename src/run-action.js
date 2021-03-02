@@ -41,7 +41,12 @@ const getNumberOfLines = async (tools) => {
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
-  return null;
+  labelConfig.map((item) => {
+    if (numberOfLines <= item.size) {
+      addLabel(tools, item.name);
+      break;
+    }
+  });
 };
 
 module.exports = async (tools) => {
