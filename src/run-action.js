@@ -2,7 +2,7 @@ const createLabelIfNotExists = require('./github/create-label-if-not-exists');
 const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
 
-module.exports = async tools => {
+const createLabelsIfNotExists = async tools => {
     const xs = {
         name: 'size_xs',
         size : tools.inputs.xs_max_size,
@@ -33,4 +33,18 @@ module.exports = async tools => {
     await Promise.all([
         addLabel(tools, xs.name)
     ]);
+}
+
+const getNumberOfLines = async tools => {
+    return 10;
+}
+
+const assignLabelForLineChanges = async (tools, numberOfLines) => {
+    return null;
+}
+
+module.exports = async tools => {
+    await createLabelsIfNotExists(tools);
+    const numberOfLines = await getNumberOfLines(tools);
+    await assignLabelForLineChanges(tools, numberOfLines);
 };
