@@ -24,6 +24,11 @@ const getLabelConfig = (tools) => {
       size: tools.inputs.l_max_size,
       color: 'ffffb5',
     },
+    {
+      name: 'size_xl',
+      size: Infinity,
+      color: 'cce2cb',
+    },
   ];
   return labelConfig;
 };
@@ -37,7 +42,7 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 100;
+  return 1000000;
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
