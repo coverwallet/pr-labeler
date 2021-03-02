@@ -37,7 +37,7 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 10;
+  return 100;
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
