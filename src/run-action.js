@@ -47,7 +47,7 @@ const getNumberOfLines = async (tools) => {
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
-  const label = '';
+  let label = '';
   for (let i = 0; i < labelConfig.length; i++) {
     if (numberOfLines <= labelConfig[i].size) {
       addLabel(tools, labelConfig[i].name);
