@@ -43,16 +43,18 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 10000;
+  return 1000;
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
-  labelConfig.map((item) => {
-    if (existsLabel(tools, item.name)) {
-      removeLabel(tools, item.name);
-    }
-  });
-  
+  await Promise.all(
+    labelConfig.map((item) => {
+      if (existsLabel(tools, item.name)) {
+        removeLabel(tools, item.name);
+      }
+    }),
+  );
+
   for (let i = 0; i < labelConfig.length; i++) {
     if (numberOfLines <= labelConfig[i].size) {
       addLabel(tools, labelConfig[i].name);
