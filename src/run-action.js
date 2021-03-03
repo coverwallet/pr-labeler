@@ -1,6 +1,7 @@
 const createLabelIfNotExists = require('./github/create-label-if-not-exists');
 const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
+const existsLabel = require('./github/exists-label');
 
 const getLabelConfig = (tools) => {
   const labelConfig = [
@@ -42,10 +43,16 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 1000000;
+  return 10000;
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
+  labelConfig.map((item) => {
+    if (existsLabel(tools, item.name)) {
+      removeLabel(tools, item.name);
+    }
+  });
+  
   for (let i = 0; i < labelConfig.length; i++) {
     if (numberOfLines <= labelConfig[i].size) {
       addLabel(tools, labelConfig[i].name);
