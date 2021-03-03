@@ -53,10 +53,13 @@ const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
         removeLabel(tools, item.name);
       }
     }),
+  ).then (
+    tools.log.info('Se han eliminado todas')
   );
   for (let i = 0; i < labelConfig.length; i++) {
     if (numberOfLines <= labelConfig[i].size) {
-      addLabel(tools, labelConfig[i].name);
+      //addLabel(tools, labelConfig[i].name);
+      tools.log.info('Añado size label')
       break;
     }
   }
