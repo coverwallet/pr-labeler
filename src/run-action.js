@@ -43,7 +43,7 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 1000;
+  return 100;
 };
 
 
