@@ -46,22 +46,21 @@ const getNumberOfLines = async (tools) => {
   return 100;
 };
 
-
-const removeLabelForLineChanges = async (tools, labelConfig, label) => {
-  await Promise.all(
-    labelConfig.map((item) => {
-      if (item.name!=label  && existsLabel(tools, item.name)) {
-        removeLabel(tools, item.name);
-      }
-    })
-  )
-};
-
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
+  const label = '';
   for (let i = 0; i < labelConfig.length; i++) {
     if (numberOfLines <= labelConfig[i].size) {
       addLabel(tools, labelConfig[i].name);
-      return labelConfig[i].name;
+      label = labelConfig[i].name;
+      break;
+    }
+  }
+  for (let i = 0; i < labelConfig.length; i++) {
+    if (
+      labelConfig[i].name != label &&
+      existsLabel(tools, labelConfig[i].name)
+    ) {
+      removeLabel(tools, labelConfig[i].name);
     }
   }
 };
@@ -70,7 +69,5 @@ module.exports = async (tools) => {
   const labelConfig = getLabelConfig(tools);
   await createLabelsIfNotExists(tools, labelConfig);
   const numberOfLines = await getNumberOfLines(tools);
-  const label = await assignLabelForLineChanges(tools, numberOfLines, labelConfig);
-  await removeLabelForLineChanges(tools,labelConfig, label);
-
+  await assignLabelForLineChanges(tools, numberOfLines, labelConfig);
 };
