@@ -49,7 +49,7 @@ const getNumberOfLines = async (tools) => {
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
   await Promise.all(
     labelConfig.map(async (item) => {
-      if (existsLabel(tools, item.name)) {
+      if (await existsLabel(tools, item.name)) {
         await removeLabel(tools, item.name);
       }
     }),
