@@ -42,13 +42,19 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
   );
 };
 
+/**
+ * @param {import('actions-toolkit').Toolkit} tools
+ */
+
 const getNumberOfLines = async (tools) => {
   tools.log.info('Getting the files');
   try {
     tools.log.info(`Listing the files of the pull request`);
 
-    tools.log.info(`Repo info ${tools.context.repo}`);
+    tools.log.info(`Repo owner ${tools.context.repo.owner}`);
 
+    tools.log.info(`Repo repo ${tools.context.repo.repo}`);
+    
     tools.log.info(`Pull number info ${tools.context.pullRequest.pull_number}`);
     
     let files = await tools.github.pulls.listFiles({
