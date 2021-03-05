@@ -54,7 +54,7 @@ const getNumberOfLines = async (tools) => {
       pull_number: tools.context.issue.number,
     });
     let numberOfLines = data.reduce((accumulator, currentValue) => {
-      accumulator + currentValue.changes;
+      return accumulator + currentValue.changes;
     }, 0);
     tools.log.info(`Number of lines changed: ${numberOfLines}`);
     return numberOfLines;
