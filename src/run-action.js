@@ -58,6 +58,7 @@ const getNumberOfLines = async (tools) => {
     data.forEach((item) => {
       numberOfLines += item.changes;
     });
+    tools.log.info(`Number of lines changed: ${numberOfLines}`);
     return numberOfLines;
   } catch (error) {
     tools.log.info(
