@@ -5,7 +5,6 @@ const isAddedLabel = require('./is-added-label');
  * @param {import('actions-toolkit').Toolkit} tools
  * @param {string} labelName
  */
-
 module.exports = async (tools, labelName) => {
   if (!(await isAddedLabel(tools, labelName))) {
     tools.log.info(`The label [${labelName}] was not in the issue, we don't need to remove it`);
