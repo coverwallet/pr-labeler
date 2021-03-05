@@ -49,12 +49,12 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 const getNumberOfLines = async (tools) => {
   try {
     tools.log.info(`Getting the number of lines`);
-    const { data } = await tools.github.pulls.listFiles({
+    const { data : files } = await tools.github.pulls.listFiles({
       ...tools.context.repo,
       pull_number: tools.context.issue.number,
     });
-    let numberOfLines = data.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.changes;
+    const numberOfLines = files.reduce((accumulator, file) => {
+      return accumulator + file.changes;
     }, 0);
     tools.log.info(`Number of lines changed: ${numberOfLines}`);
     return numberOfLines;
