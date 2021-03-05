@@ -48,14 +48,18 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 
 const getNumberOfLines = async (tools) => {
   try {
-    tools.log.info(`Listing the files of the pull request`);
+    tools.log.info(`Getting the number of lines`);
 
     let files = await tools.github.pulls.listFiles({
       ...tools.context.repo,
       pull_number: tools.context.issue.number,
     });
 
-    tools.log.info(files);
+    tools.log.info(`Data:`);
+
+    let data = files.data;
+
+    tools.log.info(data);
   } catch (error) {
     tools.log.info(
       `Error happens when we listing the files of the pull request: ${error}`,
