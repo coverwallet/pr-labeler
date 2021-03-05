@@ -43,7 +43,21 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 100;
+  tools.log.info('Getting the files');
+  try {
+    tools.log.info(`Listing the files of the pull request`);
+
+    let files = await tools.github.pulls.listFiles({
+      ...tools.context.repo,
+      pull_number: tools.context.pull_number,
+    });
+
+    tools.log.info(files);
+  } catch (error) {
+    tools.log.info(
+      `Error happens when we listing the files of the pull request: ${error}`,
+    );
+  }
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
