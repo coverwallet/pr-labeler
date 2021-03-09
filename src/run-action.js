@@ -54,6 +54,9 @@ const getNumberOfLines = async (tools) => {
       pull_number: tools.context.issue.number,
     });
     const excludeFilesRegEx = new RegExp(tools.inputs.exclude_files);
+    
+    tools.log.info(`Exclude files: ${tools.inputs.exclude_files}`);
+
     const numberOfLines = files.reduce((accumulator, file) => {
       if (file.name.match(excludeFilesRegEx)) {
         tools.log.info(`Excluding file from the counting ${file.name}`);
