@@ -55,7 +55,7 @@ const getNumberOfLines = async (tools) => {
     });
     const numberOfLines = files.reduce((accumulator, file) => {
       tools.log.info(`File name: ${file.name}`);
-      if (file.name.match(tools.inputs.exclude_files)) {
+      if (file.filename.match(tools.inputs.exclude_files)) {
         tools.log.info(`Excluding file from the counting ${file.name}`);
         return accumulator;
       }
