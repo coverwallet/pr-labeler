@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.2.0...v1.3.0) (2021-03-23)
+
+
+### Features
+
+* **op-554:** add information to README ([#19](https://www.github.com/coverwallet/pr-labeler/issues/19)) ([d6481cf](https://www.github.com/coverwallet/pr-labeler/commit/d6481cf0178dc509a6224f1ec054978985674759))
+
 ## [1.2.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.1.0...v1.2.0) (2021-03-23)
 
 
