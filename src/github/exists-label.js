@@ -5,27 +5,15 @@
  */
 module.exports = async (tools, labelName) => {
   try {
-    let idx = 0
-    let isFind = false
-    while (!isFind) {       
-      idx += 1
-      const { data: labelsForRepository } =
-      await tools.github.issues.listLabelsForRepo({
-        ...tools.context.repo,
-        page: idx
-      });
+    const {
+      data: labelsForRepository,
+    } = await tools.github.paginate(tools.github.issues.listLabelsForRepo, {
+      ...tools.context.repo,
+    });
 
-      if (labelsForRepository.length === 0) {
-        break
-      }
-
-      labelsForRepository.find((label) => {
-        if (label.name === labelName) {
-          isFind = true
-        }
-      });  
-    }
-    return isFind;
+    return !!labelsForRepository.find(label => {
+      return label.name === labelName;
+    });
   } catch (error) {
     tools.log.info(
       `Error happens when we was checking labels in the repository: ${error}`,
