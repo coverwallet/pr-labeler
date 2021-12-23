@@ -3,14 +3,10 @@
  * @param {import('actions-toolkit').Toolkit} tools
  * @param {string} labelName
  */
-
-import { Toolkit } from "actions-toolkit";
-
-
 module.exports = async (tools, labelName) => {
   try {
     tools.github.issues.listForRepo()
-    const labelsForRepository = await tools.github.paginate("GET /repos/{owner}/{repo}/labels", {
+    const labelsForRepository = await tools.github.paginate(tools.github.issues.listLabelsForRepo, {
       ...tools.context.repo,
     })
 
