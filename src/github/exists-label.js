@@ -4,17 +4,17 @@
  * @param {string} labelName
  */
 
-import {Toolkit} from "actions-toolkit";
-module.exports = async (_tools, labelName) => {
-  const tools = new Toolkit()
+import { Toolkit } from "actions-toolkit";
+
+
+module.exports = async (tools, labelName) => {
   try {
-    tools.github.issues.listLabelsForRepo
-    const labelsForRepository = await tools.github.paginate(tools.github.issues.listLabelsForRepo, {
+    tools.github.issues.listForRepo()
+    const labelsForRepository = await tools.github.paginate("GET /repos/{owner}/{repo}/labels", {
       ...tools.context.repo,
     })
 
     return !!labelsForRepository.find(label => {
-      tools.log.info(`what's this ${label}`)
       return label.name === labelName;
     });
   } catch (error) {
