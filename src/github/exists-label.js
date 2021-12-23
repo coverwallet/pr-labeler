@@ -12,15 +12,20 @@ module.exports = async (tools, labelName) => {
     });
 
     tools.log.info(`what's this??? ${labelsForRepositories}`)
+ 
+    const x = await tools.github.paginate(tools.github.issues.listLabelsForRepo, {
+      ...tools.context.repo,
+    })
 
-    labelsForRepositories.data.forEach((labels) => {
+    tools.log.info(`waht's this??????? ${x}`)
+
+    x.forEach((labels) => {
         labels.find((label) => {
           if (label.name === labelName) {
             return true;
           }
         });
       })
-
     return false;
   } catch (error) {
     tools.log.info(
