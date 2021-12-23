@@ -3,9 +3,6 @@
  * @param {import('actions-toolkit').Toolkit} tools
  * @param {string} labelName
  */
-
-import { Octokit } from "@octokit/rest"
-
 module.exports = async (tools, labelName) => {
   try {
     const {
