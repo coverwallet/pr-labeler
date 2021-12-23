@@ -11,7 +11,7 @@ module.exports = async (tools, labelName) => {
       ...tools.context.repo,
     });
 
-    tools.log.info("what's this??? ${labelsForRepositories}")
+    tools.log.info(`what's this??? ${labelsForRepositories}`)
 
     labelsForRepositories.data.forEach((labels) => {
         labels.find((label) => {
