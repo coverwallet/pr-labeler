@@ -3,11 +3,14 @@
  * @param {import('actions-toolkit').Toolkit} tools
  * @param {string} labelName
  */
+
+import { Octokit } from "@octokit/rest"
+
 module.exports = async (tools, labelName) => {
   try {
     const {
       data: labelsForRepository,
-    } = await tools.github.issues.listLabelsForRepo({
+    } = await tools.github.paginate(tools.github.issues.listLabelsForRepo, {
       ...tools.context.repo,
     });
 
