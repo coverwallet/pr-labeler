@@ -9,14 +9,9 @@ module.exports = async (tools, labelName) => {
       ...tools.context.repo,
     });
 
-    labelsForRepositories.forEach((labels) => {
-        labels.find((label) => {
-          if (label.name === labelName) {
-            return true;
-          }
-        });
-      })
-    return false
+    return !!labelsForRepository.find(label => {
+      return label.name === labelName;
+    });
   } catch (error) {
     tools.log.info(
       `Error happens when we was checking labels in the repository: ${error}`,
