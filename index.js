@@ -15,6 +15,7 @@ Toolkit.run(
     event: [
       'pull_request.opened',
       'pull_request.synchronize',
+      'pull_request.ready_for_review',
     ],
     secrets: ['GITHUB_TOKEN'],
   },
