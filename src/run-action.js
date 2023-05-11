@@ -2,6 +2,7 @@ const createLabelIfNotExists = require('./github/create-label-if-not-exists');
 const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
 const existsLabel = require('./github/exists-label');
+const isAddedLabel = require('./github/is-added-label');
 
 const getLabelConfig = (tools) => {
   const labelConfig = [
@@ -71,18 +72,31 @@ const getNumberOfLines = async (tools) => {
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
-  await Promise.all(
-    labelConfig.map(async (item) => {
-      const { name } = item;
-      if (await existsLabel(tools, name)) {
-        await removeLabel(tools, name);
-      }
-    }),
-  );
+  let currentSizelabelExists = false;
 
   const element = labelConfig.find((elem) => numberOfLines <= elem.size);
+  tools.log.info(`Label to apply: ${element?.name}`);
+
   if (element) {
-    await addLabel(tools, element.name);
+    await Promise.all(
+      labelConfig.map(async (item) => {
+        const { name } = item;
+        if (await isAddedLabel(tools, name)) {
+          tools.log.info(`Label already exists, not adding`);
+          if (element.name === name) {
+            currentSizelabelExists = true;
+          } else {
+            await removeLabel(tools, name);
+          }
+        }
+      }),
+    );
+
+    tools.log.info(`currentSizeLabelExists = ${currentSizelabelExists}`);
+    if (!currentSizelabelExists) {
+      tools.log.info(`Adding label ${element.name}`);
+      await addLabel(tools, element.name);
+    }
   }
 };
 
